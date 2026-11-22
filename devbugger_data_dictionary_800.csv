@@ -1,0 +1,38 @@
+column,group,type,description,how_to_use,in_suggested_12
+row_id,identity,int,Unique ID. GitHub uses 1 to 550 and Stack Overflow uses 551 to 800.,Identifier. Use a stratified train/test split across the combined data.,
+source,identity,text,GitHub or Stack Overflow.,Provenance. Compare performance and duration distributions by source.,
+url,identity,text,Link to the original issue or question.,"Identifier, attribution and duplicate checks.",
+repository,provenance,category,GitHub repository. Blank for Stack Overflow.,Provenance. Check for repository-specific signals.,
+issue_number,identity,int,Repository-local issue number on GitHub or question ID on Stack Overflow.,Identifier. Use source and URL to identify a report.,
+report_title,text,text,GitHub issue title or cleaned Stack Overflow question title.,Text feature.,yes (text)
+body,text,text,"Cleaned issue description or question body, truncated to the first 3,000 characters. Stack Overflow excerpts can contain redacted values.",Text feature.,yes (text)
+matched_error_phrase,feature,category,First phrase found in the title and body using the project phrase list. Empty when no phrase matches.,Categorical feature. Compare performance with and without it because label rules use similar signals.,yes
+reported_at_utc,time,datetime,UTC time when the issue or question was posted.,Derive filing-time features if needed.,
+resolved_at_utc,time,datetime,UTC issue closure time on GitHub or creation time of the accepted answer on Stack Overflow.,Target calculation only.,
+resolution_hours,target,float,"Elapsed hours between the report and its source-specific endpoint, rounded to four decimals.",Regression target on the original scale.,
+log_resolution_hours,target,float,"Natural logarithm of one plus elapsed hours, rounded to four decimals.",Transformed regression target. Convert predictions back to hours for evaluation.,
+closure_reason,other,category,completed for GitHub and accepted_answer for Stack Overflow.,Endpoint provenance.,
+title_len_words,feature,int,Number of words in the title,feature (numeric),yes
+body_len_chars,feature,int,Characters in the cleaned body before the 3000-char cut,feature (numeric),yes
+n_code_blocks,feature,int,Number of fenced ``` code blocks in the body,feature (numeric),yes
+n_urls,feature,int,Number of URLs in the body,feature (numeric),yes
+has_stack_trace,feature,0/1,Body contains a stack trace (Node 'at ...:line:col' or Python Traceback),feature (binary),yes
+has_error_code,feature,0/1,"Mentions a system/Node error code such as ECONNREFUSED, ETIMEDOUT or ERR_*",feature (binary),yes
+has_http_status,feature,0/1,Mentions an HTTP 4xx/5xx status code or reason phrase,feature (binary),yes
+has_version_info,feature,0/1,Mentions a version number or the word 'version',feature (binary),yes
+has_repro_steps,feature,0/1,"Mentions steps to reproduce, a repro, CodeSandbox, StackBlitz or JSFiddle",feature (binary),yes
+reported_year,feature,int,UTC year when the issue or question was posted.,Available at filing. Check for time-period effects.,
+author_association,feature,category,Relationship to the GitHub repository. Blank for Stack Overflow.,Optional categorical feature with source-specific missingness.,yes
+comment_count,leaky,int,Comments on the issue or question at collection time.,Descriptive analysis only.,
+reaction_count,leaky,int,GitHub reactions at collection time. Blank for Stack Overflow.,Descriptive analysis only.,
+labels,leaky,text,"GitHub issue labels or Stack Overflow question tags, separated by semicolons.",Collection metadata. Exclude from training to avoid category hints.,
+candidate_Bug_Type,label,category,Bug category proposed by the keyword rules.,Compare with final labels during review.,
+Bug_Type,label,category,"Final assigned category: CORS_Error, API_Error, State_Management, Authentication or Database_Connection.",Classification target.,
+label_source,label,category,Whether review retained the keyword proposal or replaced it.,Review metadata.,
+review_status,label,category,claude_reviewed for the supplied GitHub labels and codex_reviewed for the added Stack Overflow labels.,Review provenance. Both batches are AI-assisted.,
+review_note,label,text,"GitHub review note where provided. Stack Overflow attribution, adaptation notice and license link.",Review and attribution metadata.,
+review_round,label,int,Rounds 1 through 6 are GitHub batches. Round 7 contains the 250 Stack Overflow additions.,Review metadata.,
+in_original_csv,provenance,bool,Whether the report appeared in the earlier candidate collection.,Provenance.,
+author_url,provenance,text,Report author profile on GitHub or Stack Overflow.,Attribution metadata.,
+content_license,provenance,text,Stack Overflow question license as reported by its API. Blank for GitHub.,Attribution metadata.,
+endpoint_url,provenance,text,GitHub issue URL or direct link to the accepted Stack Overflow answer.,Resolution evidence.,
