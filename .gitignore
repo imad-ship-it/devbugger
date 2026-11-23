@@ -4,3 +4,4 @@ __pycache__/
 .env
 debug.log
 /output/pdf/
+/assignment_03.ipynb
