@@ -4,7 +4,7 @@ DevBugger is a Machine Learning Fundamentals semester project. Given a MERN erro
 
 ## Assignment 3 comparative analysis
 
-**[Open the notebook for the submitted report](./assignment_03.ipynb).** It trains and compares classifiers and regressors on the [800-report dataset](./devbugger_dataset_800.csv) and produces the evaluation tables and figures discussed in the PDF.
+**[Open the main model training and evaluation notebook](./main_model_training_and_evaluation.ipynb).** The submitted Assignment 3 PDF names this notebook `assignment_03.ipynb`. It trains and compares classifiers and regressors on the [800-report dataset](./devbugger_dataset_800.csv) and produces the evaluation tables and figures discussed in the PDF.
 
 ## Local setup
 
