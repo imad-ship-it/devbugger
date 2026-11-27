@@ -42,6 +42,5 @@ The [main training and evaluation notebook](./project/main_model_training_and_ev
 | [Dataset](./project/devbugger_dataset_800.csv) and [data dictionary](./project/devbugger_data_dictionary_800.csv) | The 800 reports and definitions for all 37 stored columns. |
 | [Collection pipeline](./project/devbugger_pipeline_800.zip) | Frozen inputs and scripts for rebuilding the dataset. |
 | [Data audit](./project/data_audit.ipynb) and [data preparation](./project/data_preparation.ipynb) | Checks on labels, timestamps and duplicates, followed by the early feature preparation exercise. |
-| [Presentation slides](./project/output/slides/DevBugger%20Project%20Presentation.pptx) | The editable PowerPoint for presenting the results and demo. |
 
-The final report and viva study guide are saved locally in `project/output/pdf/`. Git ignores that folder.
+The final report and viva study guide are saved locally in `project/output/pdf/`. The editable presentation is in `project/output/slides/`. Git ignores both folders.
